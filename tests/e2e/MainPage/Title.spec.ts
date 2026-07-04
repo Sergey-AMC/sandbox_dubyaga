@@ -1,5 +1,5 @@
 import { test, expect } from '@playwright/test';
-import { URLS } from '../../../constants/urls';
+import { URLS } from '@constants/urls';
 
 test('Check the title of the main page of the DEMOQA.com', async ({ page }) => {
   await page.goto(URLS.HOME);
