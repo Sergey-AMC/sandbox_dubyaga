@@ -77,7 +77,8 @@ export class TextBoxPage {
   public async getPermanentAddressPlaceholder(): Promise<string> {
     return await this.permanentAddress.getPlaceholder();}
 
-  public async clickSubmit(): Promise<void> {
+  // Click Submit button
+    public async clickSubmit(): Promise<void> {
     await this.buttonSubmit.click();}
 
   // Clear values

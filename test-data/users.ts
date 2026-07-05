@@ -15,6 +15,16 @@ export const users = {
         curAddress: 'Current Address',
         perAddress: 'Permanent Address',
     },
+
+    // Test user for filling out fields on the TextBox page and verifying the output values
+    WebTables: {
+        firstName:  'Sergey',
+        lastName:   'Dubyaga',
+        email:      'sdubyaga@amcbridge.com',
+        age:        '48',
+        salary:     '10000',
+        department: 'QA department',
+    },
     };
 
     
