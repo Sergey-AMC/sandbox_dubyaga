@@ -13,7 +13,7 @@
       "@constants/*": ["./constants/*"],
       "@utils/*": ["./utils/*"],
       "@users/*": ["./test-data/users.ts"],
-      
+      "@elements/*": ["./elements/*"],
     }
     }
   }

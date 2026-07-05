@@ -2,6 +2,7 @@ import { test, expect } from '@playwright/test';
 import { URLS } from '@constants/urls';
 import { SelectElement } from '@pages/elements';
 import { users } from '@users/users';
+import { TextBoxPage } from '@pages/textBoxPage';
 
 test('TextBox happy path workflow', async ({page}) =>{
      // Create the instance of the SelectElement class
@@ -11,33 +12,41 @@ test('TextBox happy path workflow', async ({page}) =>{
         // Select the Text Box element on the page
         await selectElement.textBox();
 
-        //Fill out fields by Test Data
+        const textBoxPage = new TextBoxPage(page);
+ 
+        //Fill out fields by Test Data (use userTextBoxSubmit credentials)
         //Fill out User Name
-        await page.getByRole('textbox', { name: 'Full Name' }).fill(users.userTextBoxSubmit.name);
-        //Fill out Email
-        await page.getByRole('textbox', { name: 'name@example.com' }).fill(users.userTextBoxSubmit.email);
-        //Fill out Current Address
-        await page.getByRole('textbox', { name: 'Current Address' }).fill(users.userTextBoxSubmit.curAddress);
-        //Fill out Permanent Address
-        await page.locator('#permanentAddress').fill(users.userTextBoxSubmit.perAddress);
+        //await textBoxPage.clearUserName();
+        await textBoxPage.setUserName(users.userTextBoxSubmit.name);
+        await textBoxPage.setEmail(users.userTextBoxSubmit.email);
+        await textBoxPage.setCurrentAddress(users.userTextBoxSubmit.curAddress);
+        await textBoxPage.setPermanentAddress(users.userTextBoxSubmit.perAddress);
 
         //Click on the Submit button
-        await page.getByRole('button', { name: 'Submit' }).click();
+        await textBoxPage.clickSubmit();
+        
 
         // Check result
         // Read all records from appeared output field
         // Read Name value
-        const nameOutput= await page.locator('#userName').inputValue();
-        // Read Email value
-        const emailOutput= await page.locator('#userEmail').inputValue();
-        // Read Current Address value
-        const curAddressOutput= await page.locator('#currentAddress').nth(0).inputValue();
-        // Read Permanent Address value
-        const perAddressOutput= await page.locator('#permanentAddress').nth(0).inputValue();
+        let nameResult = await textBoxPage.getUserNameOutput();
+        nameResult = nameResult.replace('Name:', '').trim(); 
 
-        await expect(nameOutput).toBe(users.userTextBoxSubmit.name);
-        await expect(emailOutput).toBe(users.userTextBoxSubmit.email);
-        await expect(curAddressOutput).toBe(users.userTextBoxSubmit.curAddress);
-        await expect(perAddressOutput).toBe(users.userTextBoxSubmit.perAddress);
+        // Read Email value
+        let emailResult = await textBoxPage.getEmailOutput();
+        emailResult = emailResult.replace('Email:', '').trim();
+
+        // Read Current Address value
+        let curAddressResult = await textBoxPage.getCurrentAddressOutput();
+        curAddressResult = curAddressResult.replace('Current Address :', '').trim();
+        
+        // Read Permanent Address value
+        let perAddressResult = await textBoxPage.getPermanentAddressOutput();
+        perAddressResult = perAddressResult.replace('Permananet Address :', '').trim();
+
+        expect(nameResult).toBe(users.userTextBoxSubmit.name);
+        expect(emailResult).toBe(users.userTextBoxSubmit.email);
+        expect(curAddressResult).toBe(users.userTextBoxSubmit.curAddress);
+        expect(perAddressResult).toBe(users.userTextBoxSubmit.perAddress);
 
     })
