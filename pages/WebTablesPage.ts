@@ -37,27 +37,27 @@ public async clickSubmit(): Promise<void> {
 
 //Set First Name value in the form fields for adding a new row to the Web Table
 public async setFirstName(firstName: string): Promise<void> {
-    await this.page.locator('#firstName').fill(firstName);}
+    await this.firstName.setValue(firstName);}
 
 //Set Last Name value in the form fields for adding a new row to the Web Table
 public async setLastName(lastName: string): Promise<void> {
-    await this.page.locator('#lastName').fill(lastName);}
+    await this.lastName.setValue(lastName);}
 
 //Set Email value in the form fields for adding a new row to the Web Table
 public async setEmail(email: string): Promise<void> {
-    await this.page.locator('#userEmail').fill(email);}
+    await this.email.setValue(email);}
 
 //Set Age value in the form fields for adding a new row to the Web Table
 public async setAge(age: string): Promise<void> {
-    await this.page.locator('#age').fill(age);}
+    await this.age.setValue(age);}
 
 //Set Salary value in the form fields for adding a new row to the Web Table
 public async setSalary(salary: string): Promise<void> {
-    await this.page.locator('#salary').fill(salary);}
+    await this.salary.setValue(salary);}
 
 //Set Department value in the form fields for adding a new row to the Web Table
 public async setDepartment(department: string): Promise<void> {
-    await this.page.locator('#department').fill(department);}
+    await this.department.setValue(department);}
 
 //Get all rows from the Web Table
 public async getAllRows(): Promise<string[]> {
@@ -65,28 +65,29 @@ public async getAllRows(): Promise<string[]> {
 
 //Get the value of First Name cell in the Web Table by row 
 public async getFirstName(rowIndex: number): Promise<string> {
-    const cellLocator = this.page.locator(`table tbody tr:nth-child(${rowIndex}) td:nth-child(${1})`);
-    return await cellLocator.innerText();} 
+    const cellLocator = new WebTable(this.page.locator(`table tbody tr:nth-child(${rowIndex}) td:nth-child(${1})`));
+    return await cellLocator.getValue();
+} 
     
 //Get the value of Last Name cell in the Web Table by row 
 public async getLastName(rowIndex: number): Promise<string> {
-    const cellLocator = this.page.locator(`table tbody tr:nth-child(${rowIndex}) td:nth-child(${2})`);
-    return await cellLocator.innerText();}    
+    const cellLocator = new WebTable(this.page.locator(`table tbody tr:nth-child(${rowIndex}) td:nth-child(${2})`));
+    return await cellLocator.getValue();}    
 
 //Get the value of Age cell in the Web Table by row 
 public async getAge(rowIndex: number): Promise<string> {
-    const cellLocator = this.page.locator(`table tbody tr:nth-child(${rowIndex}) td:nth-child(${3})`);
-    return await cellLocator.innerText();}
+    const cellLocator = new WebTable(this.page.locator(`table tbody tr:nth-child(${rowIndex}) td:nth-child(${3})`));
+    return await cellLocator.getValue();}
 
 //Get the value of Email cell in the Web Table by row 
 public async getEmail(rowIndex: number): Promise<string> {
-    const cellLocator = this.page.locator(`table tbody tr:nth-child(${rowIndex}) td:nth-child(${4})`);
-    return await cellLocator.innerText();}  
+    const cellLocator = new WebTable(this.page.locator(`table tbody tr:nth-child(${rowIndex}) td:nth-child(${4})`));
+    return await cellLocator.getValue();}  
     
 //Get the value of Salary cell in the Web Table by row 
 public async getSalary(rowIndex: number): Promise<string> {
-    const cellLocator = this.page.locator(`table tbody tr:nth-child(${rowIndex}) td:nth-child(${5})`);
-    return await cellLocator.innerText();} 
+    const cellLocator = new WebTable(this.page.locator(`table tbody tr:nth-child(${rowIndex}) td:nth-child(${5})`));
+    return await cellLocator.getValue();} 
     
 //Get the value of Department cell in the Web Table by row 
 public async getDepartment(rowIndex: number): Promise<string> {

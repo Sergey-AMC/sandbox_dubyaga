@@ -27,17 +27,5 @@ export class TextBox {
   public async getPlaceholder(): Promise<string> {
     return (await this.locator.getAttribute('placeholder')) ?? '';
   }
-  
-  /*
-  
-
-  // Append text to the TextBox
-  public async appendText(text: string): Promise<void> {
-    await this.locator.pressSequentially(text);
-    // Для старых версий Playwright:
-    // await this.locator.type(text);
-  }
-
     
-  */  
 }

@@ -10,12 +10,7 @@ export class WebTable {
   
     // Get text from the WebTable
   public async getValue(): Promise<string> {
-    return (await this.locator.inputValue()) ?? '';
-  }
-
-  // Get text from the WebTable
-  public async getResult(): Promise<string> {
-    return (await this.locator.innerText()) ?? '';
+    return (await this.locator.innerText());
   }
   
 }
