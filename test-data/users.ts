@@ -1,31 +1,54 @@
-export const users = {
-    
-    // Test user for verification placeholder values on the TextBox page
-    userTextBox: {
-        fullname:         'Full Name',
-        email:            'name@example.com',
-        currentaddress:   'Current Address',
-        permanentaddress: '',
+export const User = {
+    TestUser: {
+        FirstName:        'Sergey',
+        LastName:         'Dubyaga',
+        FullName:         'Sergey Dubyaga',
+        Email:            'test@gmail.com',
+        Gender:           'male',
+        Mobile:           '0503201857',
+        BirthDate:       '23 Mar 1978',
+        Subject:          '',
+        Hobbies:          'sport',
+        CurrentAddress:   'Ukraine, Dnipro city,',
+        PermanentAddress: 'Ukraine, homeless',
+        Age:              '48',
+        Salary:           '10000',
+        Department:       'QA Department'
     },
-
-    // Test user for filling out fields on the TextBox page and verifying the output values
-    userTextBoxSubmit: {
-        name:       'Test User',
-        email:      'test_user@gmail.com',
-        curAddress: 'Current Address',
-        perAddress: 'Permanent Address',
+    TestUserModified: {
+        FirstName:        '<Sergey>',
+        LastName:         '<Dubyaga>',
+        FullName:         '<Sergey Dubyaga>',
+        Email:            'test_test@gmail.com',
+        Gender:           '<male>',
+        Mobile:           '0563201857',
+        BirthDate:       '01 Jan 1978',
+        Subject:          '',
+        Hobbies:          'sport',
+        CurrentAddress:   'Ukraine, Donetsk city,',
+        PermanentAddress: 'Ukraine',
+        Age:              '99',
+        Salary:           '10',
+        Department:       '<QA Department>'
     },
-
-    // Test user for filling out fields on the TextBox page and verifying the output values
-    WebTables: {
-        firstName:  'Sergey',
-        lastName:   'Dubyaga',
-        email:      'sdubyaga@amcbridge.com',
-        age:        '48',
-        salary:     '10000',
-        department: 'QA department',
-    },
-    };
+    Placeholder: {
+        Age:             'Age',
+        City:            'Select City',
+        CurrentAddress:  'Current Address',
+        DateOfBirth:     '10 Jul 2026',
+        Department:      'Department',
+        Email:           'name@example.com',
+        FirstName:       'First Name',
+        FullName:        'Full Name',
+        LastName:        'Last Name',
+        Mobile:          'Mobile Number',
+        Password:        'Password',    
+        Salary:          'Salary',
+        State:           'Select State',
+        ToolTip:         'Hover me to see',
+        UserName:        'UserName'
+    }
+};
 
     
 

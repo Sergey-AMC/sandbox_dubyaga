@@ -12,9 +12,10 @@
       "@tests/*": ["./tests/*"],
       "@constants/*": ["./constants/*"],
       "@utils/*": ["./utils/*"],
-      "@users/*": ["./test-data/users.ts"],
+      "@test-data/*": ["./test-data/*"],
       "@elements/*": ["./elements/*"],
-    }
+      "@helpers/*": ["./helpers/*"],
     }
   }
+}
 
