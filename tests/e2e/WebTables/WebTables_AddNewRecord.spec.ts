@@ -1,9 +1,7 @@
-import { test } from '@playwright/test';
-import { WebTablePage } from '@pages/web-table-page';
+import { test } from "@fixtures/page.fixture";
 import { User } from '@test-data/users';   
 
-test('Add new record to the Web Table', async ({page}) =>{
-    const webTable = new WebTablePage(page);
+test('Add new record to the Web Table', async ({webTable}) =>{
 
     await webTable.open();
     await webTable.clickAddButton();

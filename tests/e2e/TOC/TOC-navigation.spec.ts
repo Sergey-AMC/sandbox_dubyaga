@@ -1,16 +1,15 @@
-import { test, expect } from '@playwright/test';
+import { test, expect } from "@fixtures/page.fixture";
 import { URLS } from '@test-data/urls'; 
 import { TOC } from '@pages/toc';
 
-test.describe('TOC navigation', () => {
-    let toc: TOC;
+test.describe('TOC navigation test suite', () => {
 
-    test.beforeEach(async ({ page }) => {
+    test.beforeEach(async ({ toc, page }) => {
         await page.goto(URLS.ELEMENTS);
-        toc = new TOC(page);
         await toc.collapseSection(toc.Section.ELEMENTS);
     });
-    test('<Elements> section', async ({page}) => {
+
+    test('Verify links of the <Elements> section', async ({toc, page}) => {
         await toc.expandSection(toc.Section.ELEMENTS);
         await toc.openCategory(toc.Category.TEXT_BOX);
         await expect (page).toHaveURL(URLS.TEXT_BOX);
@@ -31,12 +30,14 @@ test.describe('TOC navigation', () => {
         await toc.openCategory(toc.Category.DYNAMIC_PROPERTIES);
         await expect (page).toHaveURL(URLS.DYNAMIC_PROPERTIES);
     })
-    test('<Forms> section', async ({page}) => {
+
+    test('Verify links of the <Forms> section', async ({toc, page}) => {
         await toc.expandSection(toc.Section.FORMS);
         await toc.openCategory(toc.Category.PRACTICE_FORM);
         await expect (page).toHaveURL(URLS.PRACTICE_FORM);
     })
-    test('<Alerts, Frame & Windows> section', async ({page}) => {
+
+    test('Verify links of the <Alerts, Frame & Windows> section', async ({toc, page}) => {
         await toc.expandSection(toc.Section.ALERTS_FRAME_WINDOWS);
         await toc.openCategory(toc.Category.BROWSER_WINDOWS);
         await expect (page).toHaveURL(URLS.BROWSER_WINDOWS);
@@ -49,7 +50,8 @@ test.describe('TOC navigation', () => {
         await toc.openCategory(toc.Category.MODAL_DIALOGS);
         await expect (page).toHaveURL(URLS.MODAL_DIALOGS);
     })
-    test('<Widgets> section', async ({page}) => {
+
+    test('Verify links of the <Widgets> section', async ({toc, page}) => {
         await toc.expandSection(toc.Section.WIDGETS);
         await toc.openCategory(toc.Category.ACCORDIAN);
         await expect (page).toHaveURL(URLS.ACCORDIAN);
@@ -70,7 +72,8 @@ test.describe('TOC navigation', () => {
         await toc.openCategory(toc.Category.SELECT_MENU);
         await expect (page).toHaveURL(URLS.SELECT_MENU);
     })
-    test('<Interactions> section', async ({page}) => {
+
+    test('Verify links of the <Interactions> section', async ({toc, page}) => {
         await toc.expandSection(toc.Section.INTERACTIONS);
         await toc.openCategory(toc.Category.SORTABLE);
         await expect (page).toHaveURL(URLS.SORTABLE);
@@ -83,7 +86,8 @@ test.describe('TOC navigation', () => {
         await toc.openCategory(toc.Category.DRAGABBLE);
         await expect (page).toHaveURL(URLS.DRAGABBLE);
     })
-    test('<Book Store Application> section', async ({page}) => {
+    
+    test('Verify links of the <Book Store Application> section', async ({toc, page}) => {
         await toc.expandSection(toc.Section.BOOK_STORE_APPLICATION);
         await toc.openCategory(toc.Category.LOGIN);
         await expect (page).toHaveURL(URLS.LOGIN);

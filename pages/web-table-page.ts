@@ -2,6 +2,7 @@ import { Page, Locator, expect } from '@playwright/test';
 import { URLS } from '../test-data/urls';
 import { cleanInput } from '@helpers/inputs.helper'; 
 import { getRandomInt } from '@utils/random'; 
+import { BasePage } from './BasePage';
 
 export interface TableRowData  {
     firstName: string;
@@ -12,7 +13,7 @@ export interface TableRowData  {
     department: string;
 };
 
-export class WebTablePage {
+export class WebTablePage extends BasePage {
   
     public firstNameInput: Locator;
     public lastNameInput: Locator;
@@ -27,8 +28,8 @@ export class WebTablePage {
     private comboBoxShow: Locator;
     private tableRows: Locator;
 
-    constructor(private page: Page) {
-        this.page = page;
+    constructor(page: Page) {
+        super(page);
         this.firstNameInput = this.page.locator('#firstName'); 
         this.lastNameInput = this.page.locator('#lastName');
         this.ageInput = this.page.locator('#age');

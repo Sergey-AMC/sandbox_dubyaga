@@ -1,7 +1,8 @@
 import { Page, Locator, expect } from '@playwright/test';
 import { URLS } from '../test-data/urls';
+import { BasePage } from './BasePage';
 
-export class TextBoxPage {
+export class TextBoxPage extends BasePage {
 
     public userName: Locator;
     public email: Locator;
@@ -13,7 +14,8 @@ export class TextBoxPage {
     private perAddressRecord: Locator;
     private buttonSubmit: Locator;
     
-    constructor(private page: Page) {
+    constructor(page: Page) {
+        super(page);
         this.userName = this.page.locator('#userName');
         this.email = this.page.locator('#userEmail');
         this.currentAddress = this.page.locator('#currentAddress');

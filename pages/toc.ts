@@ -1,4 +1,5 @@
 import { Page, Locator } from '@playwright/test';
+import { BasePage } from './BasePage';
 
 export interface SectionName  {
     ELEMENTS: Locator;
@@ -45,7 +46,7 @@ export interface CategoryName  {
     BOOK_STORE_API: Locator
 };
 
-export class TOC {
+export class TOC extends BasePage {
     private sectionElements: Locator;
     private sectionForms: Locator;
     private sectionAlertsFrameWindows: Locator;
@@ -88,7 +89,8 @@ export class TOC {
     public  Section: SectionName;
     public  Category: CategoryName;
     
-    constructor (private page: Page) {
+    constructor (page: Page) {
+        super(page);
         this.sectionElements = this.page.getByText('Elements');
         this.sectionForms = this.page.getByText('Forms');
         this.sectionAlertsFrameWindows = this.page.getByText('Alerts, Frame & Windows');

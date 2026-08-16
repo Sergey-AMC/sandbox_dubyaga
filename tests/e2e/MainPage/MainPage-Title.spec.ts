@@ -1,8 +1,6 @@
-import { test } from '@playwright/test';
-import { HomePage } from '@pages/home-page';
+import { test } from "@fixtures/page.fixture";
 
-test('Check the title of the home page of the DEMOQA.com site', async ({ page }) => {
-  const homePage = new HomePage(page);
+test('Check the title of the home page of the DEMOQA.com site', async ({ homePage }) => {
 
   await homePage.open();
   await homePage.verifyPageTitle(/demo/i);
