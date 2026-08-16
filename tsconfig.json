@@ -15,6 +15,7 @@
       "@test-data/*": ["./test-data/*"],
       "@elements/*": ["./elements/*"],
       "@helpers/*": ["./helpers/*"],
+      "@fixtures/*": ["./fixtures/*"],
     }
   }
 }

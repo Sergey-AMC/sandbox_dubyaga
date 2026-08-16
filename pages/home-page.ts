@@ -1,7 +1,8 @@
 import { Page, Locator, expect } from '@playwright/test';
 import { URLS } from '../test-data/urls';
+import { BasePage } from './BasePage';
 
-export class HomePage {
+export class HomePage extends BasePage {
 
     private plateElements: Locator;
     private plateForms: Locator;
@@ -11,7 +12,8 @@ export class HomePage {
     private plateBookStoreApplication: Locator;
     private linkSeleniumTraining: Locator;
     
-    constructor(private page: Page) {
+    constructor(page: Page) {
+        super(page);
         this.plateElements = this.page.getByRole('link', { name: 'Elements' });
         this.plateForms = this.page.getByRole('link', { name: 'Forms' });
         this.plateAlertsFrameWindows = this.page.getByRole('link', { name: 'Alerts, Frame & Windows' });

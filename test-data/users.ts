@@ -9,13 +9,15 @@ export const User = {
         Gender:           'male',
         Mobile:           '0503201857',
         BirthDate:        '23 Mar 1978',
-        Subject:          '',
+        Subject:          'Noname Subject',
         Hobbies:          'sport',
         CurrentAddress:   'Ukraine, Dnipro city,',
         PermanentAddress: 'Ukraine, homeless',
         Age:              '48',
         Salary:           '10000',
-        Department:       'QA Department'
+        Department:       'QA Department',
+        State:            'NCR',
+        City:             'Delhi'
     },
     TestUserModified: {
         FirstName:        '<Sergey>',

@@ -1,10 +1,8 @@
-import { test } from '@playwright/test';
+import { test } from "@fixtures/page.fixture";
 import { User } from '@test-data/users';
-import { TextBoxPage } from '@pages/text-box-page';
 
-test('TextBox happy path workflow', async ({page}) =>{
-    const textBox = new TextBoxPage(page);    
-    
+test('TextBox happy path workflow', async ({textBox}) =>{
+   
     await textBox.open();
     await textBox.setFullName(User.TestUser.FullName);
     await textBox.setEmail(User.TestUser.Email);
