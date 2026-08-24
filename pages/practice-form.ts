@@ -1,4 +1,4 @@
-import { Locator, Page } from "@playwright/test";
+import { Locator, Page, expect } from "@playwright/test";
 import { URLS } from "@test-data/urls";
 import { checkIsBorderColorRed, set, cleanInput } from "@helpers/inputs.helper";
 import { BasePage } from "./BasePage";
@@ -37,7 +37,7 @@ export class PracticeForm extends BasePage {
     private buttonSubmit: Locator;
 
     constructor (page: Page) {
-        super(page);
+        super(page,URLS.PRACTICE_FORM);
         this.firstName = this.page.locator("//label[text()='Name']/following::input[@id='firstName'][1]");
         this.lastName = this.page.locator("//label[text()='Name']/following::input[@id='lastName'][1]");
         this.email = this.page.locator("//input[@id='userEmail']");
@@ -61,6 +61,10 @@ export class PracticeForm extends BasePage {
         await this.page.goto(URLS.PRACTICE_FORM);
     }
 
+    async verifyPageIsLoaded(): Promise<void> {
+            await expect(this.page.locator('//h1[text()="Practice Form"]')).toBeVisible();
+    }
+
     async selectGender (gender: String): Promise <void>{
         if (gender == 'male') await this.genderMale.click();
         if (gender == 'female') await this.genderFemale.click();
@@ -74,16 +78,16 @@ export class PracticeForm extends BasePage {
     }
 
     async fillForm (user: StudentUser): Promise<void>{
-        await this.fill(this.firstName, user.firstName);
-        await this.fill(this.lastName, user.lastName);
-        await this.fill(this.email, user.email);
+        await set(this.firstName, user.firstName);
+        await set(this.lastName, user.lastName);
+        await set(this.email, user.email);
         await this.selectGender(user.gender);
-        await this.fill(this.mobile, user.mobile);
-        await this.fill(this.date_of_birth, user.date_of_birth);
+        await set(this.mobile, user.mobile);
+        await set(this.date_of_birth, user.date_of_birth);
         await this.date_of_birth.press('Escape');
-        await this.fill(this.subject, user.subject);
+        await set(this.subject, user.subject);
         await this.selectHobby(user.hobby);
-        await this.fill(this.current_address, user.current_address);
+        await set(this.current_address, user.current_address);
         await this.state.click();
         await this.page.locator(`//div[text()='${user.state}']`).click();
         await this.city.click();

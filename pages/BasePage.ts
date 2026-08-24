@@ -1,17 +1,13 @@
 import { Locator, Page, expect } from '@playwright/test';
-export class BasePage {
-
-constructor(protected page: Page) {}
+export abstract class BasePage {
+    constructor(
+        protected readonly page: Page,
+        protected readonly url: string,
+    ) {}
+        
+    async open(): Promise<void> {
+        await this.page.goto(this.url);
+    };
     
-    async click(locator: Locator) {
-        await locator.click();
-    }
-    
-    async fill(locator: Locator, text: string) {
-        await locator.fill(text);
-    }
-
-    async waitForVisible(locator: Locator) {
-        await expect(locator).toBeVisible();
-    }
+    abstract verifyPageIsLoaded(): Promise<void>;
 }

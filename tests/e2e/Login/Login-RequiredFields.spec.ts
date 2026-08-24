@@ -5,8 +5,6 @@ import { User } from "@test-data/users";
 test('Required fields on Login page', async ({login}) => {
     let testUser: LoginUser;
     testUser = {
-            firstName:  User.TestUser.FirstName,
-            lastName: User.TestUser.LastName,
             userName: User.TestUser.UserName,
             password: User.TestUser.Password  
         };

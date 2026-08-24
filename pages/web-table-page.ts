@@ -1,6 +1,6 @@
 import { Page, Locator, expect } from '@playwright/test';
 import { URLS } from '../test-data/urls';
-import { cleanInput } from '@helpers/inputs.helper'; 
+import { cleanInput, set } from '@helpers/inputs.helper'; 
 import { getRandomInt } from '@utils/random'; 
 import { BasePage } from './BasePage';
 
@@ -29,7 +29,7 @@ export class WebTablePage extends BasePage {
     private tableRows: Locator;
 
     constructor(page: Page) {
-        super(page);
+        super(page,URLS.WEB_TABLES);
         this.firstNameInput = this.page.locator('#firstName'); 
         this.lastNameInput = this.page.locator('#lastName');
         this.ageInput = this.page.locator('#age');
@@ -48,6 +48,10 @@ export class WebTablePage extends BasePage {
         await this.page.goto(URLS.WEB_TABLES);
     }
 
+    async verifyPageIsLoaded(): Promise<void> {
+        await expect(this.page.locator('//h1[text()="Web Tables"]')).toBeVisible();
+    }
+    
     public async clickAddButton(): Promise<void> {
         await this.buttonAdd.click();
     }
@@ -66,12 +70,12 @@ export class WebTablePage extends BasePage {
     }
 
     public async setAllValuesOnRegistrationForm(user: any): Promise<void> {
-        await this.firstNameInput.fill(user.FirstName);
-        await this.lastNameInput.fill(user.LastName);
-        await this.emailInput.fill(user.Email);
-        await this.ageInput.fill(user.Age);
-        await this.salaryInput.fill(user.Salary);
-        await this.departmentInput.fill(user.Department);
+        await set(this.firstNameInput, user.FirstName);
+        await set(this.lastNameInput, user.LastName);
+        await set(this.emailInput, user.Email);
+        await set(this.ageInput, user.Age);
+        await set(this.salaryInput, user.Salary);
+        await set(this.departmentInput, user.Department);
     }
 
     async getRowsCount(): Promise<number> {

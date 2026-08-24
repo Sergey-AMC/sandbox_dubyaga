@@ -1,10 +1,11 @@
 import { test as base } from '@playwright/test';
 import { PracticeForm } from '@pages/practice-form';
-import { Login, LoginUser } from '@pages/login-page';
+import { Login } from '@pages/login-page';
 import { HomePage } from '@pages/home-page';
 import { TextBoxPage } from '@pages/text-box-page';
 import { TOC } from '@pages/toc';
 import { WebTablePage } from '@pages/web-table-page';
+import { apiTest } from './api.fixture';
 import { User } from '@test-data/users';
 
 type Pages = {
@@ -16,29 +17,48 @@ type Pages = {
     practiceForm: PracticeForm;
     };
 
-export const test = base.extend<Pages>({
+export const test = apiTest.extend<Pages>({
+    
     login: async ({ page }, use) => {
-        await use(new Login(page));
+        const loginPage = new Login(page);
+        await loginPage.open();
+        await loginPage.verifyPageIsLoaded();
+        await use(loginPage);
     },
 
     homePage: async({ page }, use) => {
-        await use(new HomePage(page));    
+        const homePage = new HomePage(page);
+        await homePage.open();
+        await homePage.verifyPageIsLoaded();
+        await use(homePage);
     },
-
+   
     textBox: async ({ page }, use) => {
-        await use(new TextBoxPage(page));
+        const textBoxPage = new TextBoxPage(page);
+        await textBoxPage.open();
+        await textBoxPage.verifyPageIsLoaded();
+        await use(textBoxPage);
+    },
+   
+    toc: async ({ page }, use) => {
+        const tocPage = new TOC(page);
+        await tocPage.open();
+        await tocPage.verifyPageIsLoaded();
+        await use(tocPage);
     },
 
-    toc: async ({ page }, use) => {
-        await use(new TOC(page));
-    },
-    
     webTable: async ({ page }, use) => {
-        await use(new WebTablePage(page));
+        const webTablePage = new WebTablePage(page);
+        await webTablePage.open();
+        await webTablePage.verifyPageIsLoaded();
+        await use(webTablePage);
     },
 
     practiceForm: async ({ page }, use) => {
-        await use(new PracticeForm(page));
+        const practiceFormPage = new PracticeForm(page);
+        await practiceFormPage.open();
+        await practiceFormPage.verifyPageIsLoaded();
+        await use(practiceFormPage);
     },
 });
 

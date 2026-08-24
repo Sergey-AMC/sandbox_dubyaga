@@ -1,5 +1,6 @@
-import { Page, Locator } from '@playwright/test';
+import { Page, Locator, expect } from '@playwright/test';
 import { BasePage } from './BasePage';
+import { URLS } from '@test-data/urls';
 
 export interface SectionName  {
     ELEMENTS: Locator;
@@ -90,7 +91,7 @@ export class TOC extends BasePage {
     public  Category: CategoryName;
     
     constructor (page: Page) {
-        super(page);
+        super(page,URLS.HOME);
         this.sectionElements = this.page.getByText('Elements');
         this.sectionForms = this.page.getByText('Forms');
         this.sectionAlertsFrameWindows = this.page.getByText('Alerts, Frame & Windows');
@@ -177,6 +178,10 @@ export class TOC extends BasePage {
         }
     }
     
+    async verifyPageIsLoaded(): Promise<void> {
+        await expect(this.page.getByRole('link', { name: 'Selenium Online Training' })).toBeVisible();
+    }
+    
     async collapseSection(sectionName: Locator): Promise<void> {
         if (!(await sectionName.locator('.element-list.show').count() > 0)) {
             await sectionName.click();
@@ -191,7 +196,7 @@ export class TOC extends BasePage {
     
     async openCategory(categoryName: Locator): Promise<void> {
         if (await categoryName.isVisible()) {
-            categoryName.click();
+            await categoryName.click();
         }
     }        
 }

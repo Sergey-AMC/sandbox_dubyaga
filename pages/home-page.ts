@@ -13,7 +13,7 @@ export class HomePage extends BasePage {
     private linkSeleniumTraining: Locator;
     
     constructor(page: Page) {
-        super(page);
+        super(page,URLS.HOME);
         this.plateElements = this.page.getByRole('link', { name: 'Elements' });
         this.plateForms = this.page.getByRole('link', { name: 'Forms' });
         this.plateAlertsFrameWindows = this.page.getByRole('link', { name: 'Alerts, Frame & Windows' });
@@ -21,6 +21,10 @@ export class HomePage extends BasePage {
         this.plateInteractions = this.page.getByRole('link', { name: 'Interactions' });
         this.plateBookStoreApplication = this.page.getByRole('link', { name: 'Book Store Application' });
         this.linkSeleniumTraining = this.page.getByRole('link', { name: 'Selenium Online Training' });
+    }
+
+    async verifyPageIsLoaded(): Promise<void> {
+        await expect(this.linkSeleniumTraining).toBeVisible();
     }
 
     async open(): Promise<void>{
