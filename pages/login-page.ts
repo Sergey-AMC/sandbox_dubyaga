@@ -2,10 +2,9 @@ import { Page, Locator, expect } from "@playwright/test";
 import { URLS } from "@test-data/urls";
 import { checkIsBorderColorRed, set, cleanInput } from "@helpers/inputs.helper";
 import { BasePage } from "./BasePage";
+import { User } from "@test-data/users";
 
 export interface LoginUser {
-    firstName: string;
-    lastName: string;
     userName: string;
     password: string;
 }
@@ -30,7 +29,7 @@ export class Login extends BasePage {
     private buttonConfirmationCancel: Locator;
     
     constructor (page: Page) {
-        super(page);    
+        super(page,URLS.LOGIN);    
         this.loginUserName = this.page.locator('#userName');
         this.loginPassword = this.page.locator('#password');
         this.registerFirstName = this.page.locator('#firstname');
@@ -53,6 +52,14 @@ export class Login extends BasePage {
         await this.page.goto(URLS.LOGIN);
     }
 
+    async verifyPageIsLoaded(): Promise<void> {
+            await expect(this.page.locator('//h1[text()="Login"]')).toBeVisible();
+    }
+
+    async verifyRegisterPageIsLoaded(): Promise<void> {
+            await expect(this.page.locator('//h1[text()="Register"]')).toBeVisible();
+    }
+
     async verifyLoginPageIsLoaded(): Promise<void> {
         await expect(this.page.locator('#userName')).toBeVisible();
     }
@@ -63,22 +70,24 @@ export class Login extends BasePage {
     
     public async clickNewUser(): Promise<void> {
         await this.buttonNewUser.click();
+        await this.verifyRegisterPageIsLoaded();
     }
 
     public async fillRegisterForm(userData: LoginUser): Promise<void> {
-        await this.fill(this.registerFirstName, userData.firstName);
-        await this.fill(this.registerLastName, userData.lastName);
-        await this.fill(this.registerUserName, userData.userName);
-        await this.fill(this.registerPassword, userData.password);
+        await set(this.registerFirstName, User.TestUser.FirstName);
+        await set(this.registerLastName, User.TestUser.LastName);
+        await set(this.registerUserName, userData.userName);
+        await set(this.registerPassword, userData.password);
     }
 
     public async clickRegisterButton(): Promise<void> {
         await this.buttonRegister.click();
+        await this.verifyProfilePageIsLoaded();
     }
 
     public async enterUserCredential(userData: LoginUser): Promise<void> {
-        await this.fill(this.loginUserName,userData.userName);
-        await this.fill(this.loginPassword, userData.password);
+        await set(this.loginUserName,userData.userName);
+        await set(this.loginPassword, userData.password);
     }
 
     public async clickLoginButton(): Promise<void> {
@@ -91,7 +100,6 @@ export class Login extends BasePage {
     }
 
     public async clickDeleteAccount(): Promise<void> {
-        await this.verifyProfilePageIsLoaded();
         await this.buttonDeleteAccount.click();
     }
 

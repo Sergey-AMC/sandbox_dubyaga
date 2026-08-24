@@ -15,7 +15,7 @@ export class TextBoxPage extends BasePage {
     private buttonSubmit: Locator;
     
     constructor(page: Page) {
-        super(page);
+        super(page,URLS.TEXT_BOX);
         this.userName = this.page.locator('#userName');
         this.email = this.page.locator('#userEmail');
         this.currentAddress = this.page.locator('#currentAddress');
@@ -27,7 +27,11 @@ export class TextBoxPage extends BasePage {
         this.buttonSubmit = this.page.locator('#submit');
     }
   
-  public async open(){
+  async verifyPageIsLoaded(): Promise<void> {
+        await expect(this.page.locator('//h1[text()="Text Box"]')).toBeVisible();
+    }
+  
+    public async open() {
     await this.page.goto(URLS.TEXT_BOX);
   }
   

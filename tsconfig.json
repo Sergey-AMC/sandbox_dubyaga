@@ -8,6 +8,8 @@
     "skipLibCheck": true,
     "types": ["node","@playwright/test"],
     "paths" : {
+      "@api/*": ["./api/*"],
+      "@api.fixtures/*": ["./api.fixtures/*"],
       "@pages/*": ["./pages/*"],
       "@tests/*": ["./tests/*"],
       "@constants/*": ["./constants/*"],
@@ -16,6 +18,7 @@
       "@elements/*": ["./elements/*"],
       "@helpers/*": ["./helpers/*"],
       "@fixtures/*": ["./fixtures/*"],
+      "@userFactory/*": ["./userFactory/*"],
     }
   }
 }
