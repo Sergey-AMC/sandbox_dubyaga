@@ -6,12 +6,14 @@ export interface LoginUser {
 }
 
 export class UserApi {
+    private static readonly baseUrl = 'https://demoqa.com';
+
     constructor(
         private readonly request: APIRequestContext
     ) {}
 
     async createUser(user: LoginUser) {
-        const response = await this.request.post('https://demoqa.com/Account/v1/User',
+        const response = await this.request.post(`${UserApi.baseUrl}/Account/v1/User`,
         {
             data: {
                 userName: user.userName,
@@ -24,7 +26,7 @@ export class UserApi {
     }
 
     async generateToken(user: LoginUser): Promise<string> {
-        const response = await this.request.post('https://demoqa.com/Account/v1/GenerateToken',
+        const response = await this.request.post(`${UserApi.baseUrl}/Account/v1/GenerateToken`,
         {
             data: {
                 userName: user.userName,
@@ -38,7 +40,7 @@ export class UserApi {
     }
 
     async deleteUser(userId: string, token: string): Promise<void> {
-        const response = await this.request.delete(`https://demoqa.com/Account/v1/User/${userId}`,
+        const response = await this.request.delete(`${UserApi.baseUrl}/Account/v1/User/${userId}`,
             {
                 headers: {
                     Authorization: `Bearer ${token}`,

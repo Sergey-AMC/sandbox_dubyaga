@@ -2,21 +2,6 @@ import { URLS } from './urls';
 
 export const TOC_NAVIGATION = [
     {
-        name: 'Elements',
-        section: 'ELEMENTS',
-        links: [
-            ['TEXT_BOX', URLS.TEXT_BOX],
-            ['CHECK_BOX', URLS.CHECK_BOX],
-            ['RADIO_BUTTON', URLS.RADIO_BUTTON],
-            ['WEB_TABLES', URLS.WEB_TABLES],
-            ['BUTTONS', URLS.BUTTONS],
-            ['LINKS', URLS.LINKS],
-            ['BROKEN_LINKS_IMAGES', URLS.BROKEN_LINKS],
-            ['UPLOAD_AND_DOWNLOAD', URLS.UPLOAD_DOWNLOAD],
-            ['DYNAMIC_PROPERTIES', URLS.DYNAMIC_PROPERTIES],
-        ],
-    },
-    {
         name: 'Forms',
         section: 'FORMS',
         links: [['PRACTICE_FORM', URLS.PRACTICE_FORM]],
