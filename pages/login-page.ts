@@ -90,6 +90,12 @@ export class Login extends BasePage {
         await set(this.loginPassword, userData.password);
     }
 
+    public async loginAs(userData: LoginUser): Promise<void> {
+        await this.open();
+        await this.enterUserCredential(userData);
+        await this.clickLoginButton();
+    }
+
     public async clickLoginButton(): Promise<void> {
         await this.buttonLogin.click();
     }
@@ -101,6 +107,11 @@ export class Login extends BasePage {
 
     public async clickDeleteAccount(): Promise<void> {
         await this.buttonDeleteAccount.click();
+    }
+
+    public async deleteAccountAndConfirm(): Promise<void> {
+        await this.clickDeleteAccount();
+        await this.clickConfirmationOkButton();
     }
 
     public async clickBackToLogin(): Promise<void> {
@@ -124,6 +135,16 @@ export class Login extends BasePage {
 
     public async chechIsPasswordBorderRed  (): Promise<void> {
         await checkIsBorderColorRed(this.loginPassword);
+    }
+
+    public async expectUserNameRequiredError(): Promise<void> {
+        await this.clickLoginButton();
+        await this.chechIsUserNameBorderRed();
+    }
+
+    public async expectPasswordRequiredError(): Promise<void> {
+        await this.clickLoginButton();
+        await this.chechIsPasswordBorderRed();
     }
 
     public async enterUserName (user: LoginUser): Promise<void> {
